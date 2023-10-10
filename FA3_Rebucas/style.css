@@ -2,7 +2,7 @@ body {
     background-image: url("microsoft.jpg");
     background-position: center 50px;
     background-repeat: no-repeat;
-    background-size: cover;  
+    background-size: cover; 
 }
 h1 { 
          text-align: center; 
@@ -35,5 +35,4 @@ h1 {
          color: rgb(255,50,50); 
          margin-left: 2px; 
          margin-right: 5px; 
-         margin: 0 auto; 
  }
