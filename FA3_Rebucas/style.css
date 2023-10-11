@@ -11,8 +11,7 @@ h1 {
          border-color: blue; 
          border-width: 2px; 
          padding: 10px 15px 10px 15px; 
-         width: 250px; 
-         margin: 0 auto; 
+         width: 250px;
          margin-bottom: 20px; 
          background-color: #f8dfb6; 
  } 
@@ -24,9 +23,8 @@ h1 {
          padding: 20px; 
          border-color: black; 
          border-width: 3px; 
-         border-style: dashed; 
-         width: 500px; 
-         margin: 0 auto; 
+         border-style: dotted solid double dashed; 
+         width: 500px;
  } 
   
  span { 
