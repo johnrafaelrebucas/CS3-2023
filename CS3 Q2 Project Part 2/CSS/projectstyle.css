@@ -1,0 +1,165 @@
+body {
+    background-image: url("../MEDIA/background.jpg");
+    background-size: cover;
+    background-position: center;
+}
+  @keyframes fadeIn { 
+	0% {opacity: 0;}
+	25% {opacity: 0.5} 
+	50% {opacity: 1;}
+	75% {opacity: 2;} 
+	100% {opacity:  3;}
+ } 	
+ a {
+    color: yellow;
+    text-shadow: 1px 1px black;
+    border: solid black 2px;
+    background-color: #7FFFD4;
+    border-radius: 6px;
+    padding: 5px; 
+	text-decoration: none; 
+	font-weight: bold; 
+	animation-name: fadeIn; 
+	animation-duration: 4s; 
+}
+ p { 
+	color: yellow; 
+	text-shadow: 1px 1px black; 
+	text-align: center; 
+	font-weight: bold; 
+	animation-name: fadeIn; 
+	animation-duration: 4s; 
+ }
+ 
+h1 {
+    font-family: Courier;
+    color: yellow;
+    text-shadow: 2.5px 2.5px black;
+    text-align: center;
+	animation-name: fadeIn; 
+	animation-duration: 4s; 
+} 
+h2 {
+	font-family: Courier;
+    color: #FFD700;
+    text-shadow: 2.5px 2.5px black;
+    text-align: center;
+	animation-name: fadeIn; 
+	animation-duration: 4s; 
+}
+h3 {
+	font-family: "Sans-serif"; 
+	color: #FFD700;
+	text-shadow: 4px 4px Black; 
+	text-align: center; 
+	font-size: 40px;
+	animation-name: fadeIn; 
+	animation-duration: 4s; 
+} audio { 
+}
+.sprite { 
+	background: url('../MEDIA/icon.png') no-repeat -182px -91px;
+	width: 55px; 
+	height: 50px; 
+ } 
+ .sprite1 { 
+	background: url('../MEDIA/icon.png') no-repeat -283px -81px;
+	width: 62px; 
+	height: 57px; 
+ } 
+ .sprite, .sprite1 {
+		display: inline-block; 
+		position: center; 
+		margin-left: auto; 
+	    margin-right: auto; 
+ } 
+.center { 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  height: 30%;
+  animation-name: fadeIn; 
+  animation-duration: 4s; 
+}
+.center1 { 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  animation-name: fadeIn; 
+  animation-duration: 4s; 
+}
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    position: top;
+    width: 98%;	
+	padding: 15px;
+	animation-name: fadeIn; 
+	animation-duration: 4s; 
+}
+.navbar a {
+    float: left;
+    display: block;
+    color: yellow;
+    text-align: center;
+    text-decoration: none;
+	padding: 10px;
+	margin: 5px;
+	animation-name: fadeIn; 
+	animation-duration: 4s; 
+}
+.navbar h3 {
+	font-family: "Sans-serif"; 
+	color: #FFD700;
+	text-shadow: 4px 4px Black; 
+	text-align: center; 
+	font-size: 40px;
+} 
+#login {
+    float: right;
+}
+#signup {
+    float: right;
+} 
+.botnavbar {
+	background-color: #333;
+	overflow: hidden; 
+	position: fixed; 
+	bottom: 20px;
+	padding: 10px;
+	width: 97%; 
+	animation-name: fadeIn; 
+	animation-duration: 4s; 
+} 
+.botnavbar a {  
+	display: block; 
+	color: yellow; 
+	text-align: center; 
+	animation-name: fadeIn; 
+	animation-duration: 4s; 
+} 
+.botnavbar2 {
+	background-color: #333;
+	overflow: hidden;  
+	bottom: 20px;
+	position: fixed;
+	bottom: 20px;
+	padding: 10px;
+	width: 97%; 
+	padding: 20; 
+} 
+.botnavbar2 a {  
+	display: block; 
+	color: Black; 
+	text-align: center;
+	padding: 20; 
+	animation-name: fadeIn; 
+	animation-duration: 4s; 
+} 
+a:hover {
+    background-color: grey;
+	color: blue;
+} 
+
+
