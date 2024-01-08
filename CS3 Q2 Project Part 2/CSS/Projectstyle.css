@@ -62,11 +62,21 @@ h3 {
 	width: 55px; 
 	height: 50px; 
  } 
+ .sprite:hover { 
+	background: url('../MEDIA/icon.png') no-repeat -182px -16px;
+	width: 55px; 
+	height: 50px; 
+ }
  .sprite1 { 
 	background: url('../MEDIA/icon.png') no-repeat -283px -81px;
 	width: 62px; 
 	height: 57px; 
  } 
+ .sprite1:hover { 
+		background: url('../MEDIA/icon.png') no-repeat -283px -6px;
+	width: 62px; 
+	height: 57px;
+ }
  .sprite, .sprite1 {
 		display: inline-block; 
 		position: center; 
