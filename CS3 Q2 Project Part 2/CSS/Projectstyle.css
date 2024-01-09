@@ -79,9 +79,7 @@ h3 {
  }
  .sprite, .sprite1 {
 		display: inline-block; 
-		position: center; 
-		margin-left: auto; 
-	    margin-right: auto; 
+		position: center;
  } 
 .center { 
   display: block;
