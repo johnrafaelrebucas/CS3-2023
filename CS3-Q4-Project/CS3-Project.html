@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+	<html>
+
+	<head>
+	<link rel="icon" href="iconweb.png" type="image/x-icon">
+	<title> Comsci 3 : Quarter Project </title>
+
+	<style>
+	    
+    body {
+      font-family: Arial, sans-serif;
+      background-color: lightbrown;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+   	span {
+      margin: auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    span:hover {
+      background-color: #ddd;
+    }
+
+    #startButton {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #nextButton {
+      background-color: #008CBA;
+      color: white;
+    }
+
+    #retryButton {
+      background-color: #f44336;
+      color: white;
+    }
+
+    #scoreTable {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #scoreTable th,
+    #scoreTable td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #scoreTable th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #scoreTable tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    #scoreTable tr:hover {
+      background-color: #ddd;
+    }
+
+    #scoreForm {
+      margin-top: 20px;
+    }
+
+    #demo1,
+    #demo2,
+    #demo3,
+    #demo4 {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    h3 {
+      color: #4CAF50;
+    }
+    
+    h2 {
+      font-weight: bold; 
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px 0;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .center-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+        }
+    .difficulty-buttons {
+       display: flex;
+       justify-content: center;
+       margin-bottom: 20px;
+        }
+   .difficulty-buttons button {
+       margin: 0 10px;
+        }
+   #easyScoreTable,
+   #hardScoreTable {
+       margin-top: 20px;
+       border-collapse: collapse;
+       width: 50%;
+       margin-left: auto;
+       margin-right: auto;
+       text-align: center; 
+        }
+  #easyScoreTable th,
+  #easyScoreTable td,
+  #hardScoreTable th,
+  #hardScoreTable td {
+       border: 1px solid #ddd;
+       padding: 8px;
+        }
+  #easyScoreTable th,
+  #hardScoreTable th {
+       background-color: #008CBA;
+       color: white;
+        }
+  #easyScoreTable tr:nth-child(even),
+  #hardScoreTable tr:nth-child(even) {
+       background-color: #f2f2f2;
+        }
+  #easyScoreTable tr:hover,
+  #hardScoreTable tr:hover {
+       background-color: #ddd;
+        }
+	</style>
+	</head>
+
+
+	<body>
+	    
+ <img src="mathalino.png" alt="Description Image" style="width: 300px; height: auto;">
+
+	<h2> ONCE YOU CLICK START, A 15 SECOND TIMER WILL BEGIN. ADD THE TWO NUMBERS THAT WILL BE GENERATED. SOLVE AS MUCH AS YOU CAN! </h2>
+         
+         <h3> MECHANICS </h3> 
+
+         <h2 style="border: 2px solid black; padding: 10px;">Once you tap the Start Button, the timer will begin. Add the two numbers generated and input your answer once prompted. The number at the bottom is your score, you will gain 1 point for every correct answer. If you answer a prompt incorrectly, tap the Retry button to try the game again. Once the timer is done, input your name or nickname to be added to the leaderboard. Have fun and try this game with your friends to see who's the secret "Math Godz" between you!</h2>
+
+<div class="difficulty-buttons">
+        <button onclick="setDifficulty('easy')">Easy</button>
+        <button onclick="setDifficulty('hard')">Hard</button>
+    </div>
+
+    <p id="difficultyIndicator">Selected Difficulty: Easy</p>
+
+    <span id="startButton" onclick="startGame()">START GAME</span>
+
+    <div class="center-buttons">
+        <button id="retryButton" style="display:none;" onclick="retryGame()">RETRY</button>
+    </div>
+ 
+	
+	<p id="demo1"> 
+	</p>
+
+	<p id="demo2"> 
+	</p>
+
+	<p id="demo3"> 
+	</p>
+	
+	<p id="demo4"> 
+	</p>
+
+ <div id="scoreForm" style="display:none;">
+        <h3>Enter your name to record your score</h3>
+        <input type="text" id="userName" placeholder="Your Name">
+        <button onclick="recordScore()">Submit Score</button>
+    </div>
+
+    <h3>Scoreboard - Easy</h3>
+    <table id="easyScoreTable">
+        <tr>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+    </table>
+
+    <h3>Scoreboard - Hard</h3>
+    <table id="hardScoreTable">
+        <tr>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+    </table>
+
+ 
+	<script>
+	    
+	       let easyScores = [];
+        let hardScores = [];
+        let points = 0;
+        let timer;
+        let timeUp = false;
+        let difficulty = 'easy';
+
+        function setDifficulty(level) {
+            difficulty = level;
+            document.getElementById("difficultyIndicator").innerText = "Selected Difficulty: " + (level === 'easy' ? 'Easy' : 'Hard');
+        } 
+
+    function startGame() {
+            points = 0;
+            timeUp = false;
+            document.getElementById("demo4").innerHTML = points;
+            document.getElementById("retryButton").style.display = "none";
+            document.getElementById("scoreForm").style.display = "none";
+
+            startTimer();
+            generateNumbers();
+            setTimeout(() => {
+                input();
+            }, 1000);
+        }
+        
+        
+    function startTimer() {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                timeUp = true;
+                alert("TIME IS UP");
+                document.getElementById("demo3").innerHTML = "TIME'S UP";
+                showRetry();
+            }, 15000);
+        }
+	 
+	 function generateNumbers() {
+            function randomNum(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            let x, y;
+            if (difficulty === 'easy') {
+                x = randomNum(1, 10);
+                y = randomNum(1, 10);
+            } else if (difficulty === 'hard') {
+                x = randomNum(10, 99);
+                y = randomNum(10, 99);
+            }
+
+            document.getElementById("demo1").innerHTML = x;
+            document.getElementById("demo2").innerHTML = y;
+        }
+	 
+	 function input() {
+            if (timeUp) {
+                document.getElementById("demo3").innerHTML = "TIME'S UP";
+                return;
+            }
+
+	 
+	 let x = parseInt(document.getElementById("demo1").innerHTML);
+	 let y = parseInt(document.getElementById("demo2").innerHTML);
+		
+	 let ActualAnswer = x + y;
+	 
+	 let answer = parseInt(prompt("INPUT YOUR ANSWER"));
+	 
+	 if (timeUp) {
+                document.getElementById("demo3").innerHTML = "TIME'S UP";
+                return;
+            }
+            
+	 if (answer === ActualAnswer) {
+	 document.getElementById("demo3").innerHTML = "CORRECT";
+	 points++; 
+	 generateNumbers();
+      setTimeout(() => {
+        input();
+      }, 1000);
+	 }
+	 
+	 else { 
+	 document.getElementById("demo3").innerHTML = "RETRY";
+	 alert("WRONG!");
+	 showRetry();
+	 }
+	 document.getElementById("demo4").innerHTML = points; 
+	 }
+	 
+	 function showRetry() {
+      document.getElementById("retryButton").style.display = "block";
+      document.getElementById("scoreForm").style.display = "block";
+    }
+
+    function retryGame() {
+      startGame();
+    }
+    
+    function recordScore() {
+            let name = document.getElementById("userName").value;
+            if (name === "") {
+                alert("Please enter your name");
+                return;
+            }
+
+            let score = points; 
+
+            if (difficulty === 'easy') {
+                easyScores.push({ name: name, score: score }); 
+                updateScoreboard('easy');
+            } else if (difficulty === 'hard') {
+                hardScores.push({ name: name, score: score }); 
+                updateScoreboard('hard');
+            }
+
+            document.getElementById("userName").value = "";
+            document.getElementById("scoreForm").style.display = "none";
+        }
+
+        function updateScoreboard(difficultyLevel) {
+            let table;
+            let scores;
+
+            if (difficultyLevel === 'easy') {
+                table = document.getElementById("easyScoreTable");
+                scores = easyScores;
+            } else if (difficultyLevel === 'hard') {
+                table = document.getElementById("hardScoreTable");
+                scores = hardScores;
+            }
+
+            table.innerHTML = `
+                <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+            `;
+            scores.forEach(score => {
+                let newRow = table.insertRow();
+                let nameCell = newRow.insertCell(0);
+                let scoreCell = newRow.insertCell(1);
+
+                nameCell.innerHTML = score.name;
+                scoreCell.innerHTML = score.score;
+            });
+        }
+ 
+ </script> 
+ 
+	</body>
+
+
+	</html> 
+
+ 
+
+
+
